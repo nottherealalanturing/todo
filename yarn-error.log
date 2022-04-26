@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Assad\.yarn\releases\yarn-1.22.1.cjs init
+
+PATH: 
+  C:\Users\Assad\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Assad\bin;C:\Python310\Scripts;C:\Python310;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\OpenJDK\openjdk-8u312-b07\bin;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\Assad\AppData\Local\Microsoft\WindowsApps;C:\Users\Assad\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Assad\AppData\Local\Android\Sdk\platform-tools;C:\Users\Assad\AppData\Roaming\npm;C:\Users\Assad\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.1
+
+Node version: 
+  18.0.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\Assad\.yarn\releases\yarn-1.22.1.cjs:131414:13)
+      at Interface.emit (node:events:527:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1123:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:272:20)
+      at ReadStream.emit (node:events:527:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
