@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Webpack
+# To-Do App
 
-> Creating a webpack template
+> A minimalist to-do app bundled with webpack.
 
 ## Built With
 
