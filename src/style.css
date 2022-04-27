@@ -1,3 +1,9 @@
-body {
-  background-color: bisque;
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dots {
+  height: 20px;
 }

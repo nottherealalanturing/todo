@@ -5,3 +5,7 @@ const tasks = [
   { description: 'Bake some cake.', completed: false, index: 1 },
   { description: 'Fix doors.', completed: false, index: 2 },
 ];
+
+const populateDOM = () => {
+  const tasks = document.querySelector('#tasks');
+};
