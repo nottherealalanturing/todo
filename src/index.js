@@ -10,7 +10,7 @@ const populateDOM = () => {
   const tasksList = document.querySelector('#tasks');
   let newList = '';
   tasks.forEach((val, i) => {
-    newList += `<li class="task">
+    newList += `<li class="task bb">
     <div class="task-div" data-index=${tasks[i].index}>
       <input type="checkbox" id="completed" data=${tasks[i].completed}/>
       <p>${tasks[i].description}</p>

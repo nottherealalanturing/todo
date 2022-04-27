@@ -10,8 +10,16 @@
     ></script>
   </head>
   <body>
-    <main>
+    <main class="container">
+      <h1 class="heading bb">
+        Today's To Do
+        <span class="refresh"
+          ><i class="fa-solid fa-arrows-rotate fa-2xs"></i
+        ></span>
+      </h1>
+      <input type="text" placeholder="Add to your list" class="newItem bb" />
       <ul id="tasks"></ul>
+      <button type="button" class="clearBtn">Clear all completed</button>
     </main>
   </body>
 </html>

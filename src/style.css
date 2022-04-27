@@ -1,17 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+}
+
+body {
+  border-color: #f6f6f6;
+}
+
+.container {
+  width: 500px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px -4px #cac5c5;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-top: 10rem;
+}
+
 .task {
   display: flex;
   align-items: center;
-  width: 300px;
   justify-content: space-between;
-  padding: 10px;
-  border: 1px solid black;
+  padding: 15px;
 }
 
 .task-div {
   display: flex;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.dots {
-  height: 20px;
+.newItem {
+  padding: 0 40px 0 1rem;
+  line-height: 50px;
+  font-style: italic;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  resize: none;
+  font-size: 18px;
+  width: 100%;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.refresh {
+  align-self: flex-end;
+}
+
+.clearBtn {
+  width: 100%;
+  padding: 20px;
+  font-weight: 900;
+}
+
+.bb {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
