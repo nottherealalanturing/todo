@@ -1,7 +1,15 @@
 .task {
   display: flex;
   align-items: center;
-  gap: 10px;
+  width: 300px;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.task-div {
+  display: flex;
+  gap: 5px;
 }
 
 .dots {
