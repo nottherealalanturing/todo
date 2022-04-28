@@ -1,15 +1,15 @@
 export default class Tasks {
   static index = 0;
+
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 
   addTask = (description, completed) => {
-    console.log();
     this.tasks.push({
-      description: description,
-      completed: completed,
-      index: Tasks.index++,
+      description,
+      completed,
+      index: parseInt(Tasks.index, 10),
     });
   };
 

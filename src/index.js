@@ -1,18 +1,9 @@
 import './style.css';
-import Tasks from './Tasks';
+import Tasks from './Tasks.js';
 
 const MyTasks = new Tasks();
 
 const addInput = document.querySelector('.newItem');
-
-addInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    MyTasks.addTask(e.target.value, false);
-    localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
-    document.querySelector('.newItem').value = '';
-  }
-  populateDOM();
-});
 
 const deleteAction = () => {
   document.querySelectorAll('.task').forEach((val, index) => {
@@ -26,16 +17,19 @@ const deleteAction = () => {
 };
 
 const editAction = () => {
-  document.querySelectorAll('.task').forEach((val, index) => {
+  document.querySelectorAll('.task').forEach((val) => {
     val.children[0].children[1].addEventListener('blur', (e) => {
-      MyTasks.editTask(parseInt(e.target.dataset.index), e.target.textContent);
+      MyTasks.editTask(
+        parseInt(e.target.dataset.index, 10),
+        e.target.textContent
+      );
       localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     });
   });
 };
 
 const alternateIcons = () => {
-  document.querySelectorAll('.task').forEach((val, index) => {
+  document.querySelectorAll('.task').forEach((val) => {
     val.firstChild.addEventListener('click', (e) => {
       e.target.parentElement.classList.toggle('selected');
       if (e.target.parentElement.classList.contains('selected')) {
@@ -73,5 +67,14 @@ const populateDOM = () => {
   alternateIcons();
   editAction();
 };
+
+addInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    MyTasks.addTask(e.target.value, false);
+    localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
+    document.querySelector('.newItem').value = '';
+  }
+  populateDOM();
+});
 
 populateDOM();
