@@ -20,4 +20,17 @@ export default class Tasks {
       }
     });
   };
+
+  editTask = (index, description) => {
+    this.tasks.forEach((val, i) => {
+      if (this.tasks[i].index === index) {
+        const temp = {
+          description,
+          completed: tasks[i].completed,
+          index: tasks[i].index,
+        };
+        this.tasks[i] = temp;
+      }
+    });
+  };
 }

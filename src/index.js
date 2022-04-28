@@ -9,6 +9,7 @@ addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     MyTasks.addTask(e.target.value, false);
   }
+  populateDOM();
 });
 
 const populateDOM = () => {
