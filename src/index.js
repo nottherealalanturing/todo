@@ -6,11 +6,11 @@ const MyTasks = new Tasks();
 const addInput = document.querySelector('.newItem');
 
 const deleteAction = () => {
-  document.querySelectorAll('.task').forEach((val, index) => {
+  document.querySelectorAll('.task').forEach((val) => {
     val.lastChild.addEventListener('click', (e) => {
       const parent = e.target.parentElement.parentElement;
       parent.removeChild(e.target.parentElement);
-      MyTasks.deleteTask(parseInt(e.target.parentElement.dataset.index));
+      MyTasks.deleteTask(parseInt(e.target.parentElement.dataset.index, 10));
       localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     });
   });
@@ -19,10 +19,12 @@ const deleteAction = () => {
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
     val.children[0].children[1].addEventListener('blur', (e) => {
+      /* eslint-disable */
       MyTasks.editTask(
         parseInt(e.target.dataset.index, 10),
         e.target.textContent
       );
+      /* eslint-enable */
       localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     });
   });
@@ -34,20 +36,24 @@ const alternateIcons = () => {
       e.target.parentElement.classList.toggle('selected');
       if (e.target.parentElement.classList.contains('selected')) {
         val.removeChild(val.lastChild);
+        /* eslint-disable */
         val.appendChild(
           new DOMParser().parseFromString(
             `<i class="fa fa-trash" data-icon-index=${val.dataset.index} aria-hidden="true"></i>`,
             'text/html'
           ).body.childNodes[0]
         );
+        /* eslint-enable */
         deleteAction();
       } else {
         val.removeChild(val.lastChild);
+        /* eslint-disable */
         val.appendChild(
           new DOMParser().parseFromString(
             `<i class="fa-solid data-icon-index=${val.dataset.index} fa-ellipsis-vertical"></i>`,
             'text/html'
           ).body.childNodes[0]
+          /* eslint-enable */
         );
       }
     });
