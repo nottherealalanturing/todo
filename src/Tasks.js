@@ -18,17 +18,14 @@ export default class Tasks {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
       }
+      Tasks.index -= 1;
     });
   };
 
   editTask = (index, description) => {
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
-        const temp = {
-          description,
-          completed: tasks[i].completed,
-          index: tasks[i].index,
-        };
+        const temp = { ...this.tasks[i], description };
         this.tasks[i] = temp;
       }
     });

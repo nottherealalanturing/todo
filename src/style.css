@@ -36,8 +36,9 @@ body {
 .task-div {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
+  width: 95%;
+  background-color: transparent !important;
 }
 
 .newItem {
@@ -70,4 +71,11 @@ body {
 
 .bb {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.selected {
+  background-color: rgba(119, 62, 62, 0.664);
+}
+
+.description {
 }
