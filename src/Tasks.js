@@ -1,7 +1,7 @@
 export default class Tasks {
   static index = 0;
   constructor() {
-    this.tasks = [];
+    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 
   addTask = (description, completed) => {

@@ -8,6 +8,7 @@ const addInput = document.querySelector('.newItem');
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     MyTasks.addTask(e.target.value, false);
+    localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
   }
   populateDOM();
 });
@@ -18,6 +19,7 @@ const deleteAction = () => {
       const parent = e.target.parentElement.parentElement;
       parent.removeChild(e.target.parentElement);
       MyTasks.deleteTask(parseInt(e.target.parentElement.dataset.index));
+      localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     });
   });
 };
@@ -26,6 +28,7 @@ const editAction = () => {
   document.querySelectorAll('.task').forEach((val, index) => {
     val.children[0].children[1].addEventListener('blur', (e) => {
       MyTasks.editTask(parseInt(e.target.dataset.index), e.target.textContent);
+      localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     });
   });
 };
