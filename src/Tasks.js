@@ -15,4 +15,12 @@ export default class Tasks {
       index: this.index++,
     });
   };
+
+  deleteTask = (index) => {
+    this.tasks.forEach((val, i) => {
+      if (this.tasks[i].index === index) {
+        this.tasks.splice(i, 1);
+      }
+    });
+  };
 }
