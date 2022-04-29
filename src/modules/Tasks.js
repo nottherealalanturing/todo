@@ -1,28 +1,43 @@
 export default class Tasks {
-  index = JSON.parse(localStorage.getItem('tasks')).length;
-
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.index = this.initIndex();
   }
 
+  initIndex = () => {
+    if (JSON.parse(localStorage.getItem('index'))) {
+      return parseInt(JSON.parse(localStorage.getItem('index')));
+    } else {
+      localStorage.setItem('index', JSON.stringify(0));
+      return 0;
+    }
+  };
+
   addTask = (description, completed) => {
+    const newIndex = (this.index += 1);
     this.tasks.push({
       description,
       completed: completed.toString(),
-      index: (this.index += 1),
+      index: newIndex,
     });
+    localStorage.setItem('index', newIndex);
   };
 
   deleteTask = (index) => {
-    /* Remove Task */
+    const newIndex = (this.index -= 1);
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
       }
     });
 
+    this.tasks.forEach((val, i) => {
+      this.tasks[i].index = i + 1;
+    });
+
     /* update index count */
-    this.index -= 1;
+    this.index = newIndex;
+    localStorage.setItem('index', newIndex);
   };
 
   editTask = (index, description) => {
@@ -35,7 +50,7 @@ export default class Tasks {
   };
 
   displayTasks = () => {
-    if (localStorage.getItem('tasks').length === 0) return [];
+    if (this.index === 0) return [];
     return JSON.parse(localStorage.getItem('tasks'));
   };
 
