@@ -33,4 +33,13 @@ export default class Tasks {
       }
     });
   };
+
+  updateTaskStatus = (index, completed) => {
+    this.tasks.forEach((val, i) => {
+      if (this.tasks[i].index === index) {
+        const temp = { ...this.tasks[i], completed };
+        this.tasks[i] = temp;
+      }
+    });
+  };
 }

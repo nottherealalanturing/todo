@@ -1,5 +1,5 @@
 import './style.css';
-import Tasks from './Tasks.js';
+import Tasks from './modules/Tasks.js';
 
 const MyTasks = new Tasks();
 
