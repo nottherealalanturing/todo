@@ -76,3 +76,7 @@ body {
 .selected {
   background-color: rgba(119, 62, 62, 0.664);
 }
+
+#completed {
+  margin-right: 10px;
+}
