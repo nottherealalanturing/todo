@@ -1,5 +1,5 @@
 export default class Tasks {
-  static index = 0;
+  index = 0;
 
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -9,17 +9,20 @@ export default class Tasks {
     this.tasks.push({
       description,
       completed,
-      index: parseInt(Tasks.index, 10),
+      index: (this.index += 1),
     });
   };
 
   deleteTask = (index) => {
+    /* Remove Task */
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
       }
-      Tasks.index -= 1;
     });
+
+    /* update index count */
+    this.index -= 1;
   };
 
   editTask = (index, description) => {

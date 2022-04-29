@@ -5,17 +5,6 @@ const MyTasks = new Tasks();
 
 const addInput = document.querySelector('.newItem');
 
-const deleteAction = () => {
-  document.querySelectorAll('.task').forEach((val) => {
-    val.lastChild.addEventListener('click', (e) => {
-      const parent = e.target.parentElement.parentElement;
-      parent.removeChild(e.target.parentElement);
-      MyTasks.deleteTask(parseInt(e.target.parentElement.dataset.index, 10));
-      localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
-    });
-  });
-};
-
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
     val.children[0].children[1].addEventListener('blur', (e) => {
@@ -44,7 +33,13 @@ const alternateIcons = () => {
           ).body.childNodes[0]
         );
         /* eslint-enable */
-        deleteAction();
+        val.lastChild.addEventListener('click', (e) => {
+          const parent = e.target.parentElement.parentElement;
+          parent.removeChild(e.target.parentElement);
+          MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
+          localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
+          console.log(MyTasks.tasks);
+        });
       } else {
         val.removeChild(val.lastChild);
         /* eslint-disable */
@@ -64,8 +59,8 @@ const populateDOM = () => {
   const tasksList = document.querySelector('#tasks');
   let newList = '';
 
-  MyTasks.tasks.forEach((val, i) => {
-    newList += `<li class="task bb" data-index=${MyTasks.tasks[i].index}><div class="task-div" data-index=${MyTasks.tasks[i].index}><input type="checkbox" id="completed" data-index=${MyTasks.tasks[i].index} data=${MyTasks.tasks[i].completed}/><p class='description' data-index=${MyTasks.tasks[i].index} contenteditable="true">${MyTasks.tasks[i].description}</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${MyTasks.tasks[i].index}></i></li>`;
+  MyTasks.tasks.forEach((val) => {
+    newList += `<li class="task bb" data-index=${val.index}><div class="task-div" data-index=${val.index}><input type="checkbox" id="completed" data-index=${val.index} data=${val.completed}/><p class='description' data-index=${val.index} contenteditable="true">${val.description}</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${val.index}></i></li>`;
   });
 
   tasksList.innerHTML = newList;
