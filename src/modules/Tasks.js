@@ -1,5 +1,5 @@
 export default class Tasks {
-  index = 0;
+  index = JSON.parse(localStorage.getItem('tasks')).length;
 
   constructor() {
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -35,7 +35,7 @@ export default class Tasks {
   };
 
   displayTasks = () => {
-    return this.tasks.length === 0
+    return localStorage.getItem('tasks').length === 0
       ? []
       : JSON.parse(localStorage.getItem('tasks'));
   };
@@ -44,16 +44,19 @@ export default class Tasks {
     tasklist.forEach((val, i) => {
       if (val.index == index) {
         const temp = { ...tasklist[i], completed: completed.toString() };
-        console.log(tasklist[i]);
-        console.log(temp);
         tasklist[i] = temp;
       }
     });
     localStorage.setItem('tasks', JSON.stringify(tasklist));
   };
 
-  static clearAllTasks = (tasklist) => {
-    tasklist = tasklist.filter((a) => false);
+  static clearAllTasks = () => {
+    localStorage.setItem('tasks', JSON.stringify([]));
+  };
+
+  static clearCompletedTasks = (tasklist) => {
+    tasklist = tasklist.filter((val, index) => val.completed !== 'true');
     localStorage.setItem('tasks', JSON.stringify(tasklist));
+    return tasklist.length;
   };
 }

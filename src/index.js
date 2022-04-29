@@ -1,11 +1,12 @@
 import './style.css';
 import Tasks from './modules/Tasks.js';
-import { clearTasks, updateStatus } from './modules/status.js';
+import { clearCompleted, clearTasks, updateStatus } from './modules/status.js';
 
 const MyTasks = new Tasks();
 
 const addInput = document.querySelector('.newItem');
-const clearBtn = document.querySelector('.clearBtn');
+const clearCompletedBtn = document.querySelector('.clearBtn');
+const clearAll = document.querySelector('.fa-arrows-rotate');
 
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
@@ -61,7 +62,17 @@ const populateDOM = () => {
   let newList = '';
 
   MyTasks.displayTasks().forEach((val) => {
-    newList += `<li class="task bb" data-index=${val.index}><input type="checkbox" id="completed" data-index=${val.index} data-completed=${val.completed}/><div class="task-div" data-index=${val.index}><p class='description' data-index=${val.index} contenteditable="true">${val.description}</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${val.index}></i></li>`;
+    newList += `<li class="task bb" data-index=${
+      val.index
+    }><input type="checkbox" id="completed" data-index=${val.index} ${
+      val.completed === 'true' ? 'checked' : null
+    } data-completed=${val.completed}/><div class="task-div" data-index=${
+      val.index
+    }><p class='description' data-index=${val.index} contenteditable="true">${
+      val.description
+    }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${
+      val.index
+    }></i></li>`;
   });
 
   tasksList.innerHTML = newList;
@@ -80,13 +91,13 @@ addInput.addEventListener('keypress', (e) => {
   populateDOM();
 });
 
-clearBtn.addEventListener('click', (e) => {
-  clearTasks(MyTasks.tasks);
-  MyTasks.index = 0;
+clearCompletedBtn.addEventListener('click', (e) => {
+  clearCompleted(MyTasks.tasks);
   populateDOM();
 });
 
-refresh.addEventListener('click', () => {
+clearAll.addEventListener('click', () => {
+  MyTasks.index = clearTasks();
   populateDOM();
 });
 
