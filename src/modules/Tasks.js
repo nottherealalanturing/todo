@@ -8,7 +8,7 @@ export default class Tasks {
   addTask = (description, completed) => {
     this.tasks.push({
       description,
-      completed,
+      completed: completed.toString(),
       index: (this.index += 1),
     });
   };
@@ -34,20 +34,22 @@ export default class Tasks {
     });
   };
 
-  updateTaskStatus = (index, completed) => {
-    this.tasks.forEach((val, i) => {
-      if (this.tasks[i].index === index) {
-        const temp = { ...this.tasks[i], completed };
-        this.tasks[i] = temp;
+  static updateTaskStatus = (index, completed, tasklist) => {
+    /* console.log(`${index} is now ${completed}`); */
+
+    tasklist.forEach((val, i) => {
+      if (val.index == index) {
+        const temp = { ...tasklist[i], completed: completed.toString() };
+        console.log(tasklist[i]);
+        console.log(temp);
+        tasklist[i] = temp;
       }
     });
+    localStorage.setItem('tasks', JSON.stringify(tasklist));
   };
 
-  clearAllTasks = () => {
-    /* Remove Task */
+  static clearAllTasks = () => {
     this.tasks = this.tasks.filter((a) => false);
-
-    /* update index count */
     this.index = 0;
   };
 }

@@ -1,5 +1,6 @@
 import './style.css';
 import Tasks from './modules/Tasks.js';
+import { updateStatus } from './modules/status.js';
 
 const MyTasks = new Tasks();
 
@@ -7,7 +8,7 @@ const addInput = document.querySelector('.newItem');
 
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
-    val.children[0].children[1].addEventListener('blur', (e) => {
+    val.children[1].children[0].addEventListener('blur', (e) => {
       /* eslint-disable */
       MyTasks.editTask(
         parseInt(e.target.dataset.index, 10),
@@ -21,7 +22,7 @@ const editAction = () => {
 
 const alternateIcons = () => {
   document.querySelectorAll('.task').forEach((val) => {
-    val.firstChild.addEventListener('click', (e) => {
+    val.children[1].addEventListener('click', (e) => {
       e.target.parentElement.classList.toggle('selected');
       if (e.target.parentElement.classList.contains('selected')) {
         val.removeChild(val.lastChild);
@@ -59,13 +60,26 @@ const populateDOM = () => {
   let newList = '';
 
   MyTasks.tasks.forEach((val) => {
-    newList += `<li class="task bb" data-index=${val.index}><div class="task-div" data-index=${val.index}><input type="checkbox" id="completed" data-index=${val.index} data=${val.completed}/><p class='description' data-index=${val.index} contenteditable="true">${val.description}</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${val.index}></i></li>`;
+    newList += `<li class="task bb" data-index=${
+      val.index
+    }><input type="checkbox" id="completed" checked=${
+      val.completed === 'true' ? true : false
+    } data-index=${val.index} data-completed=${
+      val.completed
+    }/><div class="task-div" data-index=${
+      val.index
+    }><p class='description' data-index=${val.index} contenteditable="true">${
+      val.description
+    }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${
+      val.index
+    }></i></li>`;
   });
 
   tasksList.innerHTML = newList;
 
   alternateIcons();
   editAction();
+  updateStatus(MyTasks.tasks);
 };
 
 addInput.addEventListener('keypress', (e) => {
