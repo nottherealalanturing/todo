@@ -34,15 +34,14 @@ export default class Tasks {
     });
   };
 
-  displayTasks = () => {
-    return localStorage.getItem('tasks').length === 0
+  displayTasks = () =>
+    localStorage.getItem('tasks').length === 0
       ? []
       : JSON.parse(localStorage.getItem('tasks'));
-  };
 
   static updateTaskStatus = (index, completed, tasklist) => {
     tasklist.forEach((val, i) => {
-      if (val.index == index) {
+      if (val.index.toString() === index.toString()) {
         const temp = { ...tasklist[i], completed: completed.toString() };
         tasklist[i] = temp;
       }
@@ -55,7 +54,7 @@ export default class Tasks {
   };
 
   static clearCompletedTasks = (tasklist) => {
-    tasklist = tasklist.filter((val, index) => val.completed !== 'true');
+    tasklist = tasklist.filter((val) => val.completed !== 'true');
     localStorage.setItem('tasks', JSON.stringify(tasklist));
     return tasklist.length;
   };

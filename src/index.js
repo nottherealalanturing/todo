@@ -91,7 +91,7 @@ addInput.addEventListener('keypress', (e) => {
   populateDOM();
 });
 
-clearCompletedBtn.addEventListener('click', (e) => {
+clearCompletedBtn.addEventListener('click', () => {
   clearCompleted(MyTasks.tasks);
   populateDOM();
 });
