@@ -36,7 +36,7 @@ export default class Tasks {
 
   displayTasks = () => {
     if (localStorage.getItem('tasks').length === 0) return [];
-    else return JSON.parse(localStorage.getItem('tasks'));
+    return JSON.parse(localStorage.getItem('tasks'));
   };
 
   static updateTaskStatus = (index, completed, tasklist) => {
