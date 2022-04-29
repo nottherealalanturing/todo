@@ -42,4 +42,12 @@ export default class Tasks {
       }
     });
   };
+
+  clearAllTasks = () => {
+    /* Remove Task */
+    this.tasks = this.tasks.filter((a) => false);
+
+    /* update index count */
+    this.index = 0;
+  };
 }
