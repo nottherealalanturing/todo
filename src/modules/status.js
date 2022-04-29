@@ -11,3 +11,7 @@ export const updateStatus = (tasklist) => {
     });
   });
 };
+
+export const clearTasks = (tasklist) => {
+  Tasks.clearAllTasks(tasklist);
+};

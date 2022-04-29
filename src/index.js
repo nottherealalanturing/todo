@@ -1,10 +1,11 @@
 import './style.css';
 import Tasks from './modules/Tasks.js';
-import { updateStatus } from './modules/status.js';
+import { clearTasks, updateStatus } from './modules/status.js';
 
 const MyTasks = new Tasks();
 
 const addInput = document.querySelector('.newItem');
+const clearBtn = document.querySelector('.clearBtn');
 
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
@@ -59,20 +60,8 @@ const populateDOM = () => {
   const tasksList = document.querySelector('#tasks');
   let newList = '';
 
-  MyTasks.tasks.forEach((val) => {
-    newList += `<li class="task bb" data-index=${
-      val.index
-    }><input type="checkbox" id="completed" checked=${
-      val.completed === 'true' ? true : false
-    } data-index=${val.index} data-completed=${
-      val.completed
-    }/><div class="task-div" data-index=${
-      val.index
-    }><p class='description' data-index=${val.index} contenteditable="true">${
-      val.description
-    }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${
-      val.index
-    }></i></li>`;
+  MyTasks.displayTasks().forEach((val) => {
+    newList += `<li class="task bb" data-index=${val.index}><input type="checkbox" id="completed" data-index=${val.index} data-completed=${val.completed}/><div class="task-div" data-index=${val.index}><p class='description' data-index=${val.index} contenteditable="true">${val.description}</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${val.index}></i></li>`;
   });
 
   tasksList.innerHTML = newList;
@@ -88,6 +77,12 @@ addInput.addEventListener('keypress', (e) => {
     localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
     document.querySelector('.newItem').value = '';
   }
+  populateDOM();
+});
+
+clearBtn.addEventListener('click', (e) => {
+  clearTasks(MyTasks.tasks);
+  MyTasks.index = 0;
   populateDOM();
 });
 

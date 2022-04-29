@@ -34,9 +34,13 @@ export default class Tasks {
     });
   };
 
-  static updateTaskStatus = (index, completed, tasklist) => {
-    /* console.log(`${index} is now ${completed}`); */
+  displayTasks = () => {
+    return this.tasks.length === 0
+      ? []
+      : JSON.parse(localStorage.getItem('tasks'));
+  };
 
+  static updateTaskStatus = (index, completed, tasklist) => {
     tasklist.forEach((val, i) => {
       if (val.index == index) {
         const temp = { ...tasklist[i], completed: completed.toString() };
@@ -48,8 +52,8 @@ export default class Tasks {
     localStorage.setItem('tasks', JSON.stringify(tasklist));
   };
 
-  static clearAllTasks = () => {
-    this.tasks = this.tasks.filter((a) => false);
-    this.index = 0;
+  static clearAllTasks = (tasklist) => {
+    tasklist = tasklist.filter((a) => false);
+    localStorage.setItem('tasks', JSON.stringify(tasklist));
   };
 }
