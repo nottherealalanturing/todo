@@ -6,11 +6,10 @@ export default class Tasks {
 
   initIndex = () => {
     if (JSON.parse(localStorage.getItem('index'))) {
-      return parseInt(JSON.parse(localStorage.getItem('index')));
-    } else {
-      localStorage.setItem('index', JSON.stringify(0));
-      return 0;
+      return parseInt(JSON.parse(localStorage.getItem('index')), 10);
     }
+    localStorage.setItem('index', JSON.stringify(0));
+    return 0;
   };
 
   addTask = (description, completed) => {
