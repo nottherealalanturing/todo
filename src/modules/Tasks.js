@@ -34,10 +34,10 @@ export default class Tasks {
     });
   };
 
-  displayTasks = () =>
-    localStorage.getItem('tasks').length === 0
-      ? []
-      : JSON.parse(localStorage.getItem('tasks'));
+  displayTasks = () => {
+    if (localStorage.getItem('tasks').length === 0) return [];
+    else return JSON.parse(localStorage.getItem('tasks'));
+  };
 
   static updateTaskStatus = (index, completed, tasklist) => {
     tasklist.forEach((val, i) => {
