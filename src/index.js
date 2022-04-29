@@ -1,12 +1,12 @@
 import './style.css';
 import Tasks from './modules/Tasks.js';
-import { clearCompleted, clearTasks, updateStatus } from './modules/status.js';
+import { clearCompleted, updateStatus } from './modules/status.js';
 
 const MyTasks = new Tasks();
 
 const addInput = document.querySelector('.newItem');
 const clearCompletedBtn = document.querySelector('.clearBtn');
-const clearAll = document.querySelector('.fa-arrows-rotate');
+const refresh = document.querySelector('.fa-arrows-rotate');
 
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
@@ -96,8 +96,7 @@ clearCompletedBtn.addEventListener('click', () => {
   populateDOM();
 });
 
-clearAll.addEventListener('click', () => {
-  MyTasks.index = clearTasks();
+refresh.addEventListener('click', () => {
   populateDOM();
 });
 
