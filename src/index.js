@@ -86,4 +86,8 @@ clearBtn.addEventListener('click', (e) => {
   populateDOM();
 });
 
+refresh.addEventListener('click', () => {
+  populateDOM();
+});
+
 populateDOM();
