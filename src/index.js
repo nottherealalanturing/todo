@@ -38,7 +38,6 @@ const alternateIcons = () => {
           parent.removeChild(e.target.parentElement);
           MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
           localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
-          console.log(MyTasks.tasks);
         });
       } else {
         val.removeChild(val.lastChild);
