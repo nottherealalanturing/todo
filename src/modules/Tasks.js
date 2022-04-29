@@ -13,7 +13,7 @@ export default class Tasks {
   };
 
   addTask = (description, completed) => {
-    const newIndex = (this.index += 1);
+    const newIndex = this.index + 1;
     this.tasks.push({
       description,
       completed: completed.toString(),
@@ -23,7 +23,7 @@ export default class Tasks {
   };
 
   deleteTask = (index) => {
-    const newIndex = (this.index -= 1);
+    const newIndex = this.index - 1;
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
