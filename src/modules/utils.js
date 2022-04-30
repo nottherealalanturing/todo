@@ -6,6 +6,8 @@ const MyTasks = new Tasks();
 const selectTask = () => {
   document.querySelectorAll('.task').forEach((e) => {
     e.addEventListener('click', (e) => {
+      /* eslint-disable */
+
       /* Get source of event */
       const selectedTask = document.querySelector(
         `[data-index="${e.originalTarget.dataset.index}"`
@@ -15,7 +17,6 @@ const selectTask = () => {
       document.querySelectorAll('.task').forEach((e) => {
         e.classList.remove('selected');
         e.removeChild(e.lastChild);
-        /* eslint-disable */
         e.appendChild(
           new DOMParser().parseFromString(
             `<i class="fa-solid data-icon-index=${e.dataset.index} fa-ellipsis-vertical"></i>`,
@@ -60,7 +61,7 @@ const editAction = () => {
   });
 };
 
-export const populateDOM = () => {
+export const populateDOM = function () {
   const tasksList = document.querySelector('#tasks');
   let newList = '';
 
