@@ -42,7 +42,6 @@ export default class Tasks {
       this.tasks[i].index = i + 1;
     });
 
-    /* update index count */
     localStorage.setItem('index', this.index);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
@@ -76,7 +75,13 @@ export default class Tasks {
 
   clearCompletedTasks = () => {
     this.tasks = this.tasks.filter((val) => val.completed !== 'true');
+    this.index = this.tasks.length;
+
+    this.tasks.forEach((val, i) => {
+      this.tasks[i].index = i + 1;
+    });
+
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    return this.tasks.length;
+    localStorage.setItem('index', this.index);
   };
 }
