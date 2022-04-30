@@ -14,6 +14,6 @@ export const updateStatus = (tasklist) => {
   });
 };
 
-export const clearCompleted = (tasklist) => {
-  Tasks.clearCompletedTasks(tasklist);
+export const clearCompleted = (task) => {
+  task.clearCompletedTasks();
 };

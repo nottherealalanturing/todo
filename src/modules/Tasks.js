@@ -74,9 +74,9 @@ export default class Tasks {
     localStorage.setItem('tasks', JSON.stringify([]));
   };
 
-  static clearCompletedTasks = (tasklist) => {
-    tasklist = tasklist.filter((val) => val.completed !== 'true');
-    localStorage.setItem('tasks', JSON.stringify(tasklist));
-    return tasklist.length;
+  clearCompletedTasks = () => {
+    this.tasks = this.tasks.filter((val) => val.completed !== 'true');
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    return this.tasks.length;
   };
 }

@@ -85,14 +85,13 @@ const populateDOM = () => {
 addInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     MyTasks.addTask(e.target.value, false);
-    /* localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks)); */
     document.querySelector('.newItem').value = '';
   }
   populateDOM();
 });
 
 clearCompletedBtn.addEventListener('click', () => {
-  clearCompleted(MyTasks.tasks);
+  clearCompleted(MyTasks);
   populateDOM();
 });
 
