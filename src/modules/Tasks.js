@@ -1,6 +1,6 @@
 export default class Tasks {
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.tasks = this.initTasks();
     this.index = this.initIndex();
   }
 
@@ -12,14 +12,22 @@ export default class Tasks {
     return 0;
   };
 
+  initTasks = () => {
+    if (JSON.parse(localStorage.getItem('tasks'))) {
+      return JSON.parse(localStorage.getItem('tasks'));
+    }
+    return [];
+  };
+
   addTask = (description, completed) => {
-    const newIndex = this.index + 1;
+    let newIndex = this.index + 1;
     this.tasks.push({
       description,
       completed: completed.toString(),
       index: newIndex,
     });
-    localStorage.setItem('index', newIndex);
+    localStorage.setItem('index', (this.index += 1));
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   deleteTask = (index) => {
@@ -49,8 +57,7 @@ export default class Tasks {
   };
 
   displayTasks = () => {
-    if (this.index === 0) return [];
-    return JSON.parse(localStorage.getItem('tasks'));
+    return this.tasks;
   };
 
   static updateTaskStatus = (index, completed, tasklist) => {
