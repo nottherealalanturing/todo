@@ -48,10 +48,6 @@ body {
   padding-right: 15px;
 }
 
-.submitBtn {
-  height: fit-content;
-}
-
 .newItem {
   padding: 0 40px 0 1rem;
   line-height: 50px;
