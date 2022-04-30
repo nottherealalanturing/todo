@@ -1,6 +1,6 @@
 export default class Tasks {
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.tasks = this.initTasks();
     this.index = this.initIndex();
   }
 
@@ -12,6 +12,13 @@ export default class Tasks {
     return 0;
   };
 
+  initTasks = () => {
+    if (JSON.parse(localStorage.getItem('tasks'))) {
+      return JSON.parse(localStorage.getItem('tasks'));
+    }
+    return [];
+  };
+
   addTask = (description, completed) => {
     const newIndex = this.index + 1;
     this.tasks.push({
@@ -19,11 +26,12 @@ export default class Tasks {
       completed: completed.toString(),
       index: newIndex,
     });
-    localStorage.setItem('index', newIndex);
+    localStorage.setItem('index', (this.index += 1));
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   deleteTask = (index) => {
-    const newIndex = this.index - 1;
+    this.index -= 1;
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
@@ -34,9 +42,8 @@ export default class Tasks {
       this.tasks[i].index = i + 1;
     });
 
-    /* update index count */
-    this.index = newIndex;
-    localStorage.setItem('index', newIndex);
+    localStorage.setItem('index', this.index);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   editTask = (index, description) => {
@@ -46,30 +53,34 @@ export default class Tasks {
         this.tasks[i] = temp;
       }
     });
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
-  displayTasks = () => {
-    if (this.index === 0) return [];
-    return JSON.parse(localStorage.getItem('tasks'));
-  };
+  displayTasks = () => this.tasks;
 
-  static updateTaskStatus = (index, completed, tasklist) => {
-    tasklist.forEach((val, i) => {
+  updateTaskStatus = (index, completed) => {
+    this.tasks.forEach((val, i) => {
       if (val.index.toString() === index.toString()) {
-        const temp = { ...tasklist[i], completed: completed.toString() };
-        tasklist[i] = temp;
+        const temp = { ...this.tasks[i], completed: completed.toString() };
+        this.tasks[i] = temp;
       }
     });
-    localStorage.setItem('tasks', JSON.stringify(tasklist));
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   static clearAllTasks = () => {
     localStorage.setItem('tasks', JSON.stringify([]));
   };
 
-  static clearCompletedTasks = (tasklist) => {
-    tasklist = tasklist.filter((val) => val.completed !== 'true');
-    localStorage.setItem('tasks', JSON.stringify(tasklist));
-    return tasklist.length;
+  clearCompletedTasks = () => {
+    this.tasks = this.tasks.filter((val) => val.completed !== 'true');
+    this.index = this.tasks.length;
+
+    this.tasks.forEach((val, i) => {
+      this.tasks[i].index = i + 1;
+    });
+
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem('index', this.index);
   };
 }
