@@ -1,7 +1,6 @@
 import './style.css';
-import Tasks from './modules/Tasks.js';
 import { clearCompleted } from './modules/status.js';
-import { addItem, populateDOM } from './modules/utils';
+import { addItem, populateDOM } from './modules/utils.js';
 
 const form = document.querySelector('.form');
 const newItem = document.querySelector('.newItem');

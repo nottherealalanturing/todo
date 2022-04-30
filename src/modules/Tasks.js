@@ -20,7 +20,7 @@ export default class Tasks {
   };
 
   addTask = (description, completed) => {
-    let newIndex = this.index + 1;
+    const newIndex = this.index + 1;
     this.tasks.push({
       description,
       completed: completed.toString(),
@@ -56,9 +56,7 @@ export default class Tasks {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
-  displayTasks = () => {
-    return this.tasks;
-  };
+  displayTasks = () => this.tasks;
 
   updateTaskStatus = (index, completed) => {
     this.tasks.forEach((val, i) => {

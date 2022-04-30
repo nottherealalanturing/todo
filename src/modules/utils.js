@@ -1,5 +1,5 @@
-import { updateStatus } from './status';
-import Tasks from './Tasks';
+import { updateStatus } from './status.js';
+import Tasks from './Tasks.js';
 
 const MyTasks = new Tasks();
 
