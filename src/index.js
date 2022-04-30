@@ -23,37 +23,43 @@ const editAction = () => {
   });
 };
 
-const alternateIcons = () => {
-  document.querySelectorAll('.task').forEach((val) => {
-    val.children[1].addEventListener('click', (e) => {
-      e.target.parentElement.classList.toggle('selected');
-      if (e.target.parentElement.classList.contains('selected')) {
-        val.removeChild(val.lastChild);
+const selectTask = (item) => {
+  document.querySelectorAll('.task').forEach((e) => {
+    e.addEventListener('click', (e) => {
+      const selectedTask = document.querySelector(
+        `[data-index="${e.originalTarget.dataset.index}"`
+      );
+
+      document.querySelectorAll('.task').forEach((e) => {
+        e.classList.remove('selected');
+        e.removeChild(e.lastChild);
         /* eslint-disable */
-        val.appendChild(
+        e.appendChild(
           new DOMParser().parseFromString(
-            `<i class="fa fa-trash" data-icon-index=${val.dataset.index} aria-hidden="true"></i>`,
-            'text/html'
-          ).body.childNodes[0]
-        );
-        /* eslint-enable */
-        val.lastChild.addEventListener('click', (e) => {
-          const parent = e.target.parentElement.parentElement;
-          parent.removeChild(e.target.parentElement);
-          MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
-          localStorage.setItem('tasks', JSON.stringify(MyTasks.tasks));
-        });
-      } else {
-        val.removeChild(val.lastChild);
-        /* eslint-disable */
-        val.appendChild(
-          new DOMParser().parseFromString(
-            `<i class="fa-solid data-icon-index=${val.dataset.index} fa-ellipsis-vertical"></i>`,
+            `<i class="fa-solid data-icon-index=${e.dataset.index} fa-ellipsis-vertical"></i>`,
             'text/html'
           ).body.childNodes[0]
           /* eslint-enable */
         );
-      }
+      });
+
+      selectedTask.classList.add('selected');
+
+      selectedTask.removeChild(selectedTask.lastChild);
+
+      /* eslint-disable */
+      selectedTask.appendChild(
+        new DOMParser().parseFromString(
+          `<i class="fa fa-trash" data-icon-index=${selectedTask.dataset.index} aria-hidden="true"></i>`,
+          'text/html'
+        ).body.childNodes[0]
+      );
+      /* eslint-enable */
+
+      selectedTask.lastChild.addEventListener('click', (e) => {
+        MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
+        populateDOM();
+      });
     });
   });
 };
@@ -78,9 +84,9 @@ const populateDOM = () => {
 
   tasksList.innerHTML = newList;
 
-  alternateIcons();
+  selectTask();
   editAction();
-  updateStatus(MyTasks.tasks);
+  updateStatus(MyTasks);
 };
 
 form.addEventListener('submit', (e) => {

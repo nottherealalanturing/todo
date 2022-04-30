@@ -31,7 +31,7 @@ export default class Tasks {
   };
 
   deleteTask = (index) => {
-    const newIndex = this.index - 1;
+    this.index -= 1;
     this.tasks.forEach((val, i) => {
       if (this.tasks[i].index === index) {
         this.tasks.splice(i, 1);
@@ -43,8 +43,8 @@ export default class Tasks {
     });
 
     /* update index count */
-    this.index = newIndex;
-    localStorage.setItem('index', newIndex);
+    localStorage.setItem('index', this.index);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   editTask = (index, description) => {
@@ -60,14 +60,14 @@ export default class Tasks {
     return this.tasks;
   };
 
-  static updateTaskStatus = (index, completed, tasklist) => {
-    tasklist.forEach((val, i) => {
+  updateTaskStatus = (index, completed) => {
+    this.tasks.forEach((val, i) => {
       if (val.index.toString() === index.toString()) {
-        const temp = { ...tasklist[i], completed: completed.toString() };
-        tasklist[i] = temp;
+        const temp = { ...this.tasks[i], completed: completed.toString() };
+        this.tasks[i] = temp;
       }
     });
-    localStorage.setItem('tasks', JSON.stringify(tasklist));
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   static clearAllTasks = () => {
