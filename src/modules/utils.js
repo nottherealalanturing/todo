@@ -42,6 +42,7 @@ const selectTask = () => {
 
       selectedTask.lastChild.addEventListener('click', (e) => {
         MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
+        /* eslint-disable-next-line */
         populateDOM();
       });
     });
@@ -61,7 +62,7 @@ const editAction = () => {
   });
 };
 
-export const populateDOM = function () {
+export const populateDOM = () => {
   const tasksList = document.querySelector('#tasks');
   let newList = '';
 
