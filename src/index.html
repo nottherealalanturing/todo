@@ -17,7 +17,15 @@
           ><i class="fa-solid fa-arrows-rotate fa-2xs"></i
         ></span>
       </h1>
-      <input type="text" placeholder="Add to your list" class="newItem bb" />
+      <form action="#" class="form">
+        <input
+          class="newItem bb"
+          type="text"
+          placeholder="Add your list"
+          required
+        />
+        <button type="submit" class="submitBtn">&#8617;</button>
+      </form>
       <ul id="tasks"></ul>
       <button type="button" class="clearBtn">Clear all completed</button>
     </main>

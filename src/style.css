@@ -41,6 +41,17 @@ body {
   background-color: transparent !important;
 }
 
+.form {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.submitBtn {
+  height: fit-content;
+}
+
 .newItem {
   padding: 0 40px 0 1rem;
   line-height: 50px;

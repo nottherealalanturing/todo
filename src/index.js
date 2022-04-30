@@ -4,7 +4,8 @@ import { clearCompleted, updateStatus } from './modules/status.js';
 
 const MyTasks = new Tasks();
 
-const addInput = document.querySelector('.newItem');
+const form = document.querySelector('.form');
+const newItem = document.querySelector('.newItem');
 const clearCompletedBtn = document.querySelector('.clearBtn');
 const refresh = document.querySelector('.fa-arrows-rotate');
 
@@ -82,11 +83,10 @@ const populateDOM = () => {
   updateStatus(MyTasks.tasks);
 };
 
-addInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    MyTasks.addTask(e.target.value, false);
-    document.querySelector('.newItem').value = '';
-  }
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  MyTasks.addTask(newItem.value, false);
+  newItem.value = '';
   populateDOM();
 });
 
