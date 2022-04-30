@@ -53,6 +53,7 @@ export default class Tasks {
         this.tasks[i] = temp;
       }
     });
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   };
 
   displayTasks = () => {
