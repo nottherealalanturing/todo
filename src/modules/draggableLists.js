@@ -1,19 +1,17 @@
-import { populateDOM } from './utils';
+import { populateDOM } from './utils.js';
 
 let dragStartIndex;
 
-export const dragListeners = (tasklist) => {
-  const draggables = document.querySelectorAll('.task');
-
-  draggables.forEach((draggable) => {
-    draggable.addEventListener('dragstart', (e) => {
-      dragStart(e);
-    });
-    draggable.addEventListener('drop', (e) => {
-      dragDrop(e, tasklist);
-    });
-    draggable.addEventListener('dragover', dragOver);
+const swapTask = (taskA, taskB, tasklist) => {
+  const tempA = tasklist.tasks[taskA - 1];
+  const tempB = tasklist.tasks[taskB - 1];
+  tasklist.tasks[taskA - 1] = tempB;
+  tasklist.tasks[taskB - 1] = tempA;
+  tasklist.tasks.forEach((val, i) => {
+    val.index = i + 1;
   });
+  localStorage.setItem('tasks', JSON.stringify(tasklist.tasks));
+  populateDOM();
 };
 
 const dragStart = (e) => {
@@ -29,14 +27,16 @@ const dragOver = (e) => {
   e.preventDefault();
 };
 
-const swapTask = (taskA, taskB, tasklist) => {
-  const tempA = tasklist.tasks[taskA - 1];
-  const tempB = tasklist.tasks[taskB - 1];
-  tasklist.tasks[taskA - 1] = tempB;
-  tasklist.tasks[taskB - 1] = tempA;
-  tasklist.tasks.forEach((val, i) => {
-    val.index = i + 1;
+export default dragListeners = (tasklist) => {
+  const draggables = document.querySelectorAll('.task');
+
+  draggables.forEach((draggable) => {
+    draggable.addEventListener('dragstart', (e) => {
+      dragStart(e);
+    });
+    draggable.addEventListener('drop', (e) => {
+      dragDrop(e, tasklist);
+    });
+    draggable.addEventListener('dragover', dragOver);
   });
-  localStorage.setItem('tasks', JSON.stringify(tasklist.tasks));
-  populateDOM();
 };
