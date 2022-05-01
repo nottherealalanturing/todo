@@ -1,5 +1,9 @@
-import { updateStatus } from './status.js';
+/* eslint-disable-next-line */
+import dragListeners from './draggableLists.js';
+import updateStatus from './status.js';
 import Tasks from './Tasks.js';
+
+const clearCompletedBtn = document.querySelector('.clearBtn');
 
 const MyTasks = new Tasks();
 
@@ -49,6 +53,10 @@ const selectTask = () => {
   });
 };
 
+clearCompletedBtn.addEventListener('click', () => {
+  MyTasks.clearCompletedTasks();
+});
+
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
     val.children[1].children[0].addEventListener('blur', (e) => {
@@ -69,9 +77,11 @@ export const populateDOM = () => {
   MyTasks.displayTasks().forEach((val) => {
     newList += `<li class="task bb" data-index=${
       val.index
-    }><input type="checkbox" id="completed" data-index=${val.index} ${
-      val.completed === 'true' ? 'checked' : null
-    } data-completed=${val.completed}/><div class="task-div" data-index=${
+    } draggable='true'><input type="checkbox" id="completed" data-index=${
+      val.index
+    } ${val.completed === 'true' ? 'checked' : null} data-completed=${
+      val.completed
+    }/><div class="task-div" data-index=${
       val.index
     }><p class='description' data-index=${val.index} contenteditable="true">${
       val.description
@@ -85,6 +95,7 @@ export const populateDOM = () => {
   selectTask(MyTasks);
   editAction();
   updateStatus(MyTasks);
+  dragListeners(MyTasks);
 };
 
 export const addItem = (description) => {

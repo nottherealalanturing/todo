@@ -1,4 +1,4 @@
-export const updateStatus = (tasks) => {
+const updateStatus = (tasks) => {
   document.querySelectorAll('.task').forEach((val) => {
     val.children[0].addEventListener('change', (e) => {
       /* eslint-disable */
@@ -8,6 +8,4 @@ export const updateStatus = (tasks) => {
   });
 };
 
-export const clearCompleted = (task) => {
-  task.clearCompletedTasks();
-};
+export default updateStatus;

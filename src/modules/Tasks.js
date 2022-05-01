@@ -1,3 +1,18 @@
+export const storageEvent = document.createEvent('StorageEvent');
+
+/* eslint-disable */
+storageEvent.initStorageEvent(
+  'storage',
+  false,
+  false,
+  'k1',
+  'oldValue',
+  'newValue',
+  null,
+  window.localStorage
+);
+/* eslint-enable */
+
 export default class Tasks {
   constructor() {
     this.tasks = this.initTasks();
@@ -28,6 +43,7 @@ export default class Tasks {
     });
     localStorage.setItem('index', (this.index += 1));
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    window.dispatchEvent(storageEvent);
   };
 
   deleteTask = (index) => {
@@ -44,6 +60,7 @@ export default class Tasks {
 
     localStorage.setItem('index', this.index);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    window.dispatchEvent(storageEvent);
   };
 
   editTask = (index, description) => {
@@ -54,6 +71,7 @@ export default class Tasks {
       }
     });
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    window.dispatchEvent(storageEvent);
   };
 
   displayTasks = () => this.tasks;
@@ -66,10 +84,12 @@ export default class Tasks {
       }
     });
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    window.dispatchEvent(storageEvent);
   };
 
   static clearAllTasks = () => {
     localStorage.setItem('tasks', JSON.stringify([]));
+    window.dispatchEvent(storageEvent);
   };
 
   clearCompletedTasks = () => {
@@ -82,5 +102,6 @@ export default class Tasks {
 
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     localStorage.setItem('index', this.index);
+    window.dispatchEvent(storageEvent);
   };
 }
