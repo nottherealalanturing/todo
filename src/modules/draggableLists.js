@@ -1,4 +1,4 @@
-import { populateDOM } from './utils.js';
+import { storageEvent } from './Tasks';
 
 let dragStartIndex;
 
@@ -11,7 +11,6 @@ const swapTask = (taskA, taskB, tasklist) => {
     val.index = i + 1;
   });
   localStorage.setItem('tasks', JSON.stringify(tasklist.tasks));
-  populateDOM();
 };
 
 const dragStart = (e) => {
@@ -21,6 +20,7 @@ const dragStart = (e) => {
 const dragDrop = (e, tasklist) => {
   const dragDropIndex = e.originalTarget.dataset.index;
   swapTask(dragStartIndex, dragDropIndex, tasklist);
+  window.dispatchEvent(storageEvent);
 };
 
 const dragOver = (e) => {

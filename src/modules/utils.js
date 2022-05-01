@@ -1,6 +1,8 @@
-import { dragListeners } from './draggableLists.js';
+/* eslint-disable-next-line */
+import dragListeners from './draggableLists.js';
 import { updateStatus } from './status.js';
 import Tasks from './Tasks.js';
+const clearCompletedBtn = document.querySelector('.clearBtn');
 
 const MyTasks = new Tasks();
 
@@ -49,6 +51,10 @@ const selectTask = () => {
     });
   });
 };
+
+clearCompletedBtn.addEventListener('click', () => {
+  MyTasks.clearCompletedTasks();
+});
 
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
