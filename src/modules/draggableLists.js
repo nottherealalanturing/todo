@@ -27,7 +27,7 @@ const dragOver = (e) => {
   e.preventDefault();
 };
 
-export default dragListeners = (tasklist) => {
+const dragListeners = (tasklist) => {
   const draggables = document.querySelectorAll('.task');
 
   draggables.forEach((draggable) => {
@@ -40,3 +40,5 @@ export default dragListeners = (tasklist) => {
     draggable.addEventListener('dragover', dragOver);
   });
 };
+
+export default dragListeners;
