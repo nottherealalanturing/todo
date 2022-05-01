@@ -1,4 +1,4 @@
-import { storageEvent } from './Tasks';
+import { storageEvent } from './Tasks.js';
 
 let dragStartIndex;
 

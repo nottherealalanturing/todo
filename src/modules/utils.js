@@ -2,6 +2,7 @@
 import dragListeners from './draggableLists.js';
 import { updateStatus } from './status.js';
 import Tasks from './Tasks.js';
+
 const clearCompletedBtn = document.querySelector('.clearBtn');
 
 const MyTasks = new Tasks();

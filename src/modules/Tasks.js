@@ -1,5 +1,6 @@
-export let storageEvent = document.createEvent('StorageEvent');
+export const storageEvent = document.createEvent('StorageEvent');
 
+/* eslint-disable-next-line */
 storageEvent.initStorageEvent(
   'storage',
   false,

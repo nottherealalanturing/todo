@@ -7,7 +7,3 @@ export const updateStatus = (tasks) => {
     });
   });
 };
-
-export const clearCompleted = (task) => {
-  task.clearCompletedTasks();
-};
