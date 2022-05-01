@@ -34,7 +34,9 @@ const swapTask = (taskA, taskB, tasklist) => {
   const tempB = tasklist.tasks[taskB - 1];
   tasklist.tasks[taskA - 1] = tempB;
   tasklist.tasks[taskB - 1] = tempA;
-  console.log(tasklist.tasks);
+  tasklist.tasks.forEach((val, i) => {
+    val.index = i + 1;
+  });
   localStorage.setItem('tasks', JSON.stringify(tasklist.tasks));
   populateDOM();
 };
