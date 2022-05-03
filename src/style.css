@@ -11,16 +11,18 @@
 html {
   font-size: 16px;
   font-family: 'Lato', Arial, Helvetica, sans-serif;
+  color: #deb6ab;
 }
 
 body {
   border-color: #f6f6f6;
+  background-color: #f8ecd1;
 }
 
 .container {
-  width: 500px;
+  width: 70%;
   padding: 20px;
-  box-shadow: 5px 5px 5px -4px #cac5c5;
+  box-shadow: 5px 5px 5px -4px #85586f;
   margin: 0 auto;
   border-radius: 10px;
   margin-top: 10rem;
@@ -58,6 +60,7 @@ body {
   resize: none;
   font-size: 18px;
   width: 100%;
+  background-color: #f8ecd1;
 }
 
 .heading {
@@ -76,14 +79,36 @@ body {
   font-weight: 900;
 }
 
+.submitBtn {
+  padding: 10px;
+}
+
 .bb {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(133, 88, 111, 0.486);
+}
+
+.btnColor {
+  background-color: #deb6ab;
+  border-radius: 10px;
 }
 
 .selected {
-  background-color: rgba(119, 62, 62, 0.664);
+  background: rgba(119, 62, 62, 0.664);
 }
 
 #completed {
   margin-right: 10px;
 }
+
+/* @media only screen and (min-width: 500px) {
+  .container {
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 500px;
+  }
+}
+ */
