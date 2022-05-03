@@ -131,7 +131,8 @@ body {
   color: inherit;
   position: relative;
   z-index: 1;
-
+  -moz-osx-font-smoothing: grayscale;
+  /* stylelint-disable-line */
   color: #5f7464;
 }
 
