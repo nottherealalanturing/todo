@@ -19,7 +19,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch",
-    "start": "webpack serve --open --config webpack.dev.js"
+    "start": "webpack serve --open --config webpack.dev.js",
+    "pages": "git add dist && git commit -m 'dist subtree commit' && git subtree push --prefix dist origin github-pages-dist"
   },
   "dependencies": {}
 }

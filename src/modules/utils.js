@@ -81,9 +81,11 @@ export const populateDOM = () => {
       val.index
     } ${val.completed === 'true' ? 'checked' : null} data-completed=${
       val.completed
-    }/><div class="task-div" data-index=${
+    }/><div class="task-div" data-index=${val.index}><p data-index=${
       val.index
-    }><p class='description' data-index=${val.index} contenteditable="true">${
+    } class='description ${
+      val.completed === 'true' ? 'strike' : ''
+    }' data-completed=${val.completed} contenteditable="true">${
       val.description
     }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${
       val.index
