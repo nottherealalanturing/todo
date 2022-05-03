@@ -120,7 +120,6 @@ body {
 }
 
 .button {
-  /* stylelint-disable-line */
   float: left;
   min-width: 150px;
   max-width: 250px;
@@ -129,12 +128,10 @@ body {
   padding: 1em 2em;
   border: none;
   background: none;
-  color: inherit;
   position: relative;
   z-index: 1;
   -moz-osx-font-smoothing: grayscale;
-
-  color: #5f7464; /* stylelint-disable-line declaration-no-important */
+  color: #5f7464;
 }
 
 .button:focus {
