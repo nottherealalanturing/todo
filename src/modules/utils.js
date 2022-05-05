@@ -42,6 +42,7 @@ const selectTask = () => {
           'text/html'
         ).body.childNodes[0]
       );
+
       /* eslint-enable */
 
       selectedTask.lastChild.addEventListener('click', (e) => {
