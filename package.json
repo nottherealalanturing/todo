@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": "true",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
@@ -14,13 +15,22 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "jest": "^28.0.3",
+    "jest-environment-jsdom": "^28.0.2",
+    "jsdom": "^19.0.0"
   },
   "scripts": {
+    "test": "jest --coverage",
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch",
     "start": "webpack serve --open --config webpack.dev.js",
     "pages": "git add dist && git commit -m 'dist subtree commit' && git subtree push --prefix dist origin github-pages-dist"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "jest": {
+    "globals": {
+      "StorageEvent": true
+    }
+  }
 }
