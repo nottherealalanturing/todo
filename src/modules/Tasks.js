@@ -1,6 +1,5 @@
 export const storageEvent = document.createEvent('StorageEvent');
 
-/* eslint-disable */
 storageEvent.initStorageEvent(
   'storage',
   false,
@@ -9,9 +8,8 @@ storageEvent.initStorageEvent(
   'oldValue',
   'newValue',
   null,
-  window.localStorage
+  window.localStorage,
 );
-/* eslint-enable */
 
 export default class Tasks {
   constructor() {
