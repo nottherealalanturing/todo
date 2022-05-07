@@ -1,4 +1,3 @@
-/* eslint-disable-next-line */
 import dragListeners from './draggableLists.js';
 import updateStatus from './status.js';
 import Tasks from './Tasks.js';
@@ -10,8 +9,6 @@ const MyTasks = new Tasks();
 const selectTask = () => {
   document.querySelectorAll('.task').forEach((e) => {
     e.addEventListener('click', (e) => {
-      /* eslint-disable */
-
       /* Get source of event */
       const selectedTask = document.querySelector(
         `[data-index="${e.originalTarget.dataset.index}"`
@@ -26,7 +23,6 @@ const selectTask = () => {
             `<i class="fa-solid data-icon-index=${e.dataset.index} fa-ellipsis-vertical"></i>`,
             'text/html'
           ).body.childNodes[0]
-          /* eslint-enable */
         );
       });
 
@@ -35,7 +31,7 @@ const selectTask = () => {
 
       /* show delete icon */
       selectedTask.removeChild(selectedTask.lastChild);
-      /* eslint-disable */
+
       selectedTask.appendChild(
         new DOMParser().parseFromString(
           `<i class="fa fa-trash" data-icon-index=${selectedTask.dataset.index} aria-hidden="true"></i>`,
@@ -43,11 +39,9 @@ const selectTask = () => {
         ).body.childNodes[0]
       );
 
-      /* eslint-enable */
-
       selectedTask.lastChild.addEventListener('click', (e) => {
         MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
-        /* eslint-disable-next-line */
+
         populateDOM();
       });
     });
@@ -61,12 +55,7 @@ clearCompletedBtn.addEventListener('click', () => {
 const editAction = () => {
   document.querySelectorAll('.task').forEach((val) => {
     val.children[1].children[0].addEventListener('blur', (e) => {
-      /* eslint-disable */
-      MyTasks.editTask(
-        parseInt(e.target.dataset.index, 10),
-        e.target.textContent
-      );
-      /* eslint-enable */
+      MyTasks.editTask(parseInt(e.target.dataset.index, 10), e.target.textContent);
     });
   });
 };
@@ -78,19 +67,15 @@ export const populateDOM = () => {
   MyTasks.displayTasks().forEach((val) => {
     newList += `<li class="task bb" data-index=${
       val.index
-    } draggable='true'><input type="checkbox" id="completed" data-index=${
+    } draggable='true'><input type="checkbox" id="completed" data-index=${val.index} ${
+      val.completed === 'true' ? 'checked' : null
+    } data-completed=${val.completed}/><div class="task-div" data-index=${
       val.index
-    } ${val.completed === 'true' ? 'checked' : null} data-completed=${
-      val.completed
-    }/><div class="task-div" data-index=${val.index}><p data-index=${
-      val.index
-    } class='description ${
+    }><p data-index=${val.index} class='description ${
       val.completed === 'true' ? 'strike' : ''
     }' data-completed=${val.completed} contenteditable="true">${
       val.description
-    }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${
-      val.index
-    }></i></li>`;
+    }</p></div><i class="fa-solid fa-ellipsis-vertical" data-icon-index=${val.index}></i></li>`;
   });
 
   tasksList.innerHTML = newList;
