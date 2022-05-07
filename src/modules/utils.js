@@ -11,7 +11,7 @@ const selectTask = () => {
     e.addEventListener('click', (e) => {
       /* Get source of event */
       const selectedTask = document.querySelector(
-        `[data-index="${e.originalTarget.dataset.index}"`
+        `[data-index="${e.originalTarget.dataset.index}"`,
       );
 
       /* Remove highlight from all tasks */
@@ -21,8 +21,8 @@ const selectTask = () => {
         e.appendChild(
           new DOMParser().parseFromString(
             `<i class="fa-solid data-icon-index=${e.dataset.index} fa-ellipsis-vertical"></i>`,
-            'text/html'
-          ).body.childNodes[0]
+            'text/html',
+          ).body.childNodes[0],
         );
       });
 
@@ -35,13 +35,14 @@ const selectTask = () => {
       selectedTask.appendChild(
         new DOMParser().parseFromString(
           `<i class="fa fa-trash" data-icon-index=${selectedTask.dataset.index} aria-hidden="true"></i>`,
-          'text/html'
-        ).body.childNodes[0]
+          'text/html',
+        ).body.childNodes[0],
       );
 
       selectedTask.lastChild.addEventListener('click', (e) => {
         MyTasks.deleteTask(parseInt(e.target.dataset.iconIndex, 10));
 
+        // eslint-disable-next-line no-use-before-define
         populateDOM();
       });
     });

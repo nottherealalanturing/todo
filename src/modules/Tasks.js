@@ -8,7 +8,7 @@ storageEvent.initStorageEvent(
   'oldValue',
   'newValue',
   null,
-  window.localStorage
+  window.localStorage,
 );
 
 export default class Tasks {
