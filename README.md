@@ -8,9 +8,9 @@
 
 - Javascript, CSS, HTML
 
-## Live Demo (if available)
+## Live Demo
 
-[Live Demo Link](https://nottherealalanturing.github.io/todo/)
+[Link](https://nottherealalanturing.github.io/todo/)
 
 ## Authors
 
